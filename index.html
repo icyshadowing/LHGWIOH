@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LGWIOH Quiz</title>
+<title>LHGWIOH </title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -24,43 +24,50 @@ h1,h2{margin:0 0 12px 0;}
   text-align:center;
 }
 
-select,input,textarea,button{
-  width:90%;
-  max-width:600px;
-  padding:10px;
-  margin:8px auto;
-  display:block;
-  border-radius:8px;
-  border:1px solid #ccc;
-  font-size:15px;
-}
-/* Quiz page labels */
+/* Quiz page labels and inputs alignment */
 #quizCard label {
-  font-size: 17px;   /* bigger than input text */
+  font-size: 17px;
   font-weight: 600;
   text-align: left;
   display: block;
-  margin-top: 12px;
-  margin-bottom: 4px;
+  margin: 0 0 4px 0;
+  width: 90%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-textarea{min-height:80px; resize:vertical;}
-button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer;}
+#quizCard input, #quizCard textarea {
+  width: 90%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto 12px auto;
+  padding:10px;
+  font-size:15px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+/* Buttons */
+button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer;padding:10px 16px;margin:6px;}
 button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,235,0.3);}
 
 /* Review page formatting */
-#correctTitle, #userTitle { display:block; font-size:17px; margin:4px 0 10px; color:#111; }
-#correctVerse, #userVerseBox {
+#reviewCard {
+  text-align: left;
+}
+#reviewCard > div { margin-bottom: 10px; }
+#correctTitle, #userTitle, #correctVerse, #userVerseBox {
   font-size:18px;
   line-height:1.6;
-  margin-top:8px;
+  margin-left:0;
   text-align:left;
 }
 .user-verse .word {
-  display:inline;
+  font-size:18px;
+  line-height:1.6;
   margin:0 1px;
   padding:0 2px;
-  border-radius:3px;
 }
 .ok{color:#000;}
 .spelling,.extra{text-decoration:line-through; color:#0b66ff;}
@@ -70,14 +77,16 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 </head>
 <body>
 <div class="container">
-<h1>LGWIOH Quiz</h1>
+<h1>LHGWIOH</h1>
 
+<!-- Pack Selection -->
 <div id="packSelectCard" class="card">
   <h2>Select a Pack</h2>
   <select id="packSelect"></select>
   <button id="startQuizBtn">Start Quiz</button>
 </div>
 
+<!-- Quiz Page -->
 <div id="quizCard" class="card" style="display:none;">
   <h2 id="quizRef"></h2>
   <label>Title</label>
@@ -88,14 +97,14 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
   <button id="skipBtn" class="ghost">Show Answer</button>
 </div>
 
+<!-- Review Page -->
 <div id="reviewCard" class="card" style="display:none;">
   <h2 id="reviewHeading">Review</h2>
 
-
-  <div><strong>Correct Answer:</strong> <span id="correctTitle"></span></div>
+  <div><strong>Correct Title:</strong> <span id="correctTitle"></span></div>
   <div id="correctVerse" class="muted"></div>
 
-  <div style="margin-top:15px;"><strong>Your Answer:</strong> <span id="userTitle"></span></div>
+  <div><strong>Your Title:</strong> <span id="userTitle"></span></div>
   <div id="userVerseBox" class="user-verse"></div>
 
   <button id="nextBtn">Next</button>
@@ -131,6 +140,7 @@ const inputVerse = document.getElementById('inputVerse');
 const submitAnswerBtn = document.getElementById('submitAnswerBtn');
 const skipBtn = document.getElementById('skipBtn');
 const reviewCard = document.getElementById('reviewCard');
+const reviewHeading = document.getElementById('reviewHeading');
 const correctTitle = document.getElementById('correctTitle');
 const correctVerse = document.getElementById('correctVerse');
 const userTitleEl = document.getElementById('userTitle');
@@ -162,9 +172,11 @@ function shuffle(a){
 
 function renderNext(){
   if(session.remaining.length===0){
-    quizCard.innerHTML = "<h2>Quiz Complete!</h2><button onclick='backToMain()'>Back to Main Page</button>";
+    alert("You have finished all verses in this pack!");
+    backToMain();
     return;
   }
+
   session.current = session.remaining.pop();
   quizRef.textContent = session.current.ref;
   inputTitle.value = "";
@@ -236,29 +248,24 @@ function highlightComparison(correct, user){
       result.unshift(`<span class="word missing">(${cw[i-1]})</span>`);
       i--;
     } else {
-      result.unshift(`<span class="word spelling">${strike(uw[j-1])} (${cw[i-1]})</span>`);
+      // substitution
+      result.unshift(`<span class="word extra">${strike(uw[j-1])}</span>`);
+      result.push(`<span class="word missing">(${cw[i-1]})</span>`);
       i--; j--;
     }
   }
   return result.join(" ");
 }
 
-// === Show review ===
 function showReview(uTitle, uVerse){
   quizCard.style.display='none';
   reviewCard.style.display='block';
   const c = session.current;
 
-  // Set heading to verse reference
-  document.getElementById('reviewHeading').textContent = c.ref;
-
-  // Correct info
+  reviewHeading.textContent = c.ref; // show verse reference as heading
   correctTitle.textContent = c.title;
   correctVerse.textContent = c.verse;
-
-  // User input
   userTitleEl.textContent = uTitle || "—";
   userVerseBox.innerHTML = highlightComparison(c.verse,uVerse);
 }
-
 </script>
