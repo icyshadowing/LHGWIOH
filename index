@@ -7,173 +7,107 @@
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: #f7f8fb;
-  margin: 0;
-  padding: 20px;
-  color: #111;
+  background:#f7f8fb;
+  margin:0;
+  padding:20px;
+  color:#111;
 }
-h1, h2 { margin: 0 0 12px 0; }
-.container { max-width: 700px; margin: auto; }
+h1,h2{margin:0 0 12px 0;}
+.container { max-width:700px; margin:auto; }
+
 .card {
-  background: #fff;
-  padding: 18px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin-bottom: 16px;
+  background:#fff;
+  padding:24px 20px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom:20px;
+  text-align:center;
 }
-select, input, textarea, button {
-  width: 95%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
+
+select,input,textarea,button{
+  width:90%;
+  max-width:600px;
+  padding:10px;
+  margin:8px auto;
+  display:block;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
 }
-textarea { min-height: 80px; resize: vertical; }
-button {
-  background: #2563eb;
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: 0.15s;
-}
-button:hover { background: #1e4ed8; }
-button.ghost {
-  background: transparent;
-  color: #2563eb;
-  border: 1px solid rgba(37,99,235,0.3);
-}
-button.ghost:hover {
-  background: rgba(37,99,235,0.05);
-}
-.user-verse {
-  background: #f8fafc;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 16px;
-  line-height: 1.6;
-}
-  .user-verse .word {
-  display: inline;
-  margin: 0 1px;
-  padding: 0 2px;
-  border-radius: 3px;
-}
-  /* Make review page text bigger and consistent */
+
+textarea{min-height:80px; resize:vertical;}
+button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer;}
+button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,235,0.3);}
+
+/* Review page formatting */
+#correctTitle, #userTitle { display:block; font-size:17px; margin:4px 0 10px; color:#111; }
 #correctVerse, #userVerseBox {
-  font-size: 18px;           /* bigger and easy to read */
-  line-height: 1.6;
-  margin-top: 8px;
-  text-align: left;
-  display: block;
+  font-size:18px;
+  line-height:1.6;
+  margin-top:8px;
+  text-align:left;
 }
-
-#correctTitle, #userTitle {
-  display: block;
-  font-size: 17px;
-  margin: 4px 0 10px;
-  color: #111;
-}
-
-/* Colors remain same but font size adjusted */
-.ok { color: #000; }
-.spelling, .extra { color: #0b66ff; text-decoration: none; }
-.missing { color: #ff2e2e; }
-
 .user-verse .word {
-  display: inline-block;
-  margin: 0 1px;
-  padding: 1px 3px;
-  border-radius: 4px;
+  display:inline;
+  margin:0 1px;
+  padding:0 2px;
+  border-radius:3px;
 }
-.ok { color: #000; }
-.spelling { color: #0b66ff; }
-.extra {
-  color: #0b66ff;
-  text-decoration: line-through;
-}
-.missing { color: #ff2e2e; }
-.muted { color: #555; font-size: 13px; }
+.ok{color:#000;}
+.spelling,.extra{text-decoration:line-through; color:#0b66ff;}
+.missing{color:#ff2e2e;}
+.muted{color:#555;font-size:13px;}
 </style>
 </head>
 <body>
 <div class="container">
 <h1>LGWIOH Quiz</h1>
 
-<!-- Pack Selection -->
 <div id="packSelectCard" class="card">
   <h2>Select a Pack</h2>
   <select id="packSelect"></select>
   <button id="startQuizBtn">Start Quiz</button>
 </div>
 
-<!-- Quiz Page -->
 <div id="quizCard" class="card" style="display:none;">
   <h2 id="quizRef"></h2>
-  <label><strong>Title</strong></label>
-  <input id="inputTitle" placeholder="Enter the title">
-  <label><strong>Verse</strong></label>
-  <textarea id="inputVerse" placeholder="Type the verse from memory..."></textarea>
+  <label>Title</label>
+  <input id="inputTitle">
+  <label>Verse</label>
+  <textarea id="inputVerse"></textarea>
   <button id="submitAnswerBtn">Submit</button>
   <button id="skipBtn" class="ghost">Show Answer</button>
 </div>
 
-<!-- Review Page -->
 <div id="reviewCard" class="card" style="display:none;">
   <h2>Review</h2>
-  <div style="margin-bottom:10px;">
-    <strong>Correct Title:</strong> <span id="correctTitle"></span>
-  </div>
-  <div style="margin-bottom:14px;">
-    <strong>Correct Verse:</strong>
-    <div id="correctVerse" class="user-verse muted"></div>
-  </div>
-  <div style="margin-top:15px;">
-    <strong>Your Title:</strong> <span id="userTitle"></span>
-  </div>
 
-  <div style="margin-bottom:8px;"><strong>Your Input:</strong></div>
-  <div class="user-verse" id="userVerseBox"></div>
+  <div><strong>Correct Title:</strong> <span id="correctTitle"></span></div>
+  <div id="correctVerse" class="muted"></div>
 
-  <div style="margin-top:15px;">
-    <button id="nextBtn">Next</button>
-    <button id="retryBtn" class="ghost">Try Again</button>
-    <button id="backBtn" class="ghost">Back to Main Page</button>
-  </div>
+  <div style="margin-top:15px;"><strong>Your Title:</strong> <span id="userTitle"></span></div>
+  <div id="userVerseBox" class="user-verse"></div>
 
-  <div class="muted" style="margin-top:10px;">
-    <strong>Legend:</strong> Black = correct, Blue = wrong/spelling/extra, Red = missing
+  <button id="nextBtn">Next</button>
+  <button id="retryBtn" class="ghost">Try Again</button>
+  <button id="backBtn" class="ghost">Back to Main Page</button>
+
+  <div class="muted" style="margin-top:8px;">
+    <strong>Legend:</strong> Black = correct, Blue = wrong/extra, Red = missing
   </div>
 </div>
 </div>
 
 <script>
-// === Database ===
+// === Verse packs ===
 const VERSE_PACKS = {
-  "Assurances": [
-    {
-      title: "Assurance Of Salvation",
-      ref: "1 John 5:11-12",
-      verse: "And this is the testimony: God has given us eternal life, and this life is in his Son. He who has the Son has life; he who does not have the Son of God does not have life."
-    },
-    {
-      title: "Assurance Of Answered Prayer",
-      ref: "John 16:24",
-      verse: "Until now you have not asked for anything in my name. Ask and you will receive, and your joy will be complete."
-    }
+  "Assurances":[
+    {title:"Assurance Of Salvation",ref:"1 John 5:11-12",verse:"And this is the testimony: God has given us eternal life, and this life is in his Son. He who has the Son has life; he who does not have the Son of God does not have life."},
+    {title:"Assurance Of Answered Prayer",ref:"John 16:24",verse:"Until now you have not asked for anything in my name. Ask and you will receive, and your joy will be complete."}
   ],
-  "Faith": [
-    {
-      title: "Faith Over Fear",
-      ref: "2 Timothy 1:7",
-      verse: "For God has not given us a spirit of fear, but of power, love, and a sound mind."
-    },
-    {
-      title: "Faith Brings Healing",
-      ref: "James 5:15",
-      verse: "And the prayer of faith will save the sick, and the Lord will raise him up."
-    }
+  "Faith":[
+    {title:"Faith Over Fear",ref:"2 Timothy 1:7",verse:"For God has not given us a spirit of fear, but of power, love, and a sound mind."},
+    {title:"Faith Brings Healing",ref:"James 5:15",verse:"And the prayer of faith will save the sick, and the Lord will raise him up."}
   ]
 };
 
@@ -189,13 +123,14 @@ const skipBtn = document.getElementById('skipBtn');
 const reviewCard = document.getElementById('reviewCard');
 const correctTitle = document.getElementById('correctTitle');
 const correctVerse = document.getElementById('correctVerse');
+const userTitleEl = document.getElementById('userTitle');
 const userVerseBox = document.getElementById('userVerseBox');
 const nextBtn = document.getElementById('nextBtn');
 const retryBtn = document.getElementById('retryBtn');
 const backBtn = document.getElementById('backBtn');
-const userTitleEl = document.getElementById('userTitle');
 
-
+// === Init ===
+let session = null;
 function populatePackSelect() {
   packSelect.innerHTML = "";
   for (let packName in VERSE_PACKS) {
@@ -206,8 +141,6 @@ function populatePackSelect() {
   }
 }
 populatePackSelect();
-
-let session = null;
 
 function shuffle(a){
   for(let i=a.length-1;i>0;i--){
@@ -228,6 +161,7 @@ function renderNext(){
   inputVerse.value = "";
 }
 
+// === Button actions ===
 startQuizBtn.onclick = () => {
   const packName = packSelect.value;
   const pack = VERSE_PACKS[packName];
@@ -237,106 +171,78 @@ startQuizBtn.onclick = () => {
   quizCard.style.display = 'block';
   renderNext();
 };
-
 submitAnswerBtn.onclick = ()=> showReview(inputTitle.value.trim(),inputVerse.value.trim());
 skipBtn.onclick = ()=> showReview("","");
-
 nextBtn.onclick = ()=>{
-  reviewCard.style.display = 'none';
-  quizCard.style.display = 'block';
+  reviewCard.style.display='none';
+  quizCard.style.display='block';
   renderNext();
 };
-
 retryBtn.onclick = ()=>{
   session.remaining.push(session.current);
-  reviewCard.style.display = 'none';
-  quizCard.style.display = 'block';
+  reviewCard.style.display='none';
+  quizCard.style.display='block';
   renderNext();
 };
-
 backBtn.onclick = backToMain;
 
 function backToMain(){
-  reviewCard.style.display = 'none';
-  quizCard.style.display = 'none';
-  document.getElementById('packSelectCard').style.display = 'block';
+  reviewCard.style.display='none';
+  quizCard.style.display='none';
+  document.getElementById('packSelectCard').style.display='block';
   populatePackSelect();
 }
 
-// === Improved Comparison Logic ===
+// === Comparison ===
 function tokenize(s){ return s ? s.trim().split(/\s+/) : []; }
 function normalize(w){ return w.replace(/[\W_]+/g,'').toLowerCase(); }
+function strike(text){ return text.split("").map(c=>c+"\u0336").join(""); }
 
-function highlightComparison(correct, user) {
+function highlightComparison(correct, user){
   const cw = tokenize(correct);
   const uw = tokenize(user);
 
-  // Build matrix for alignment
-  const dp = Array(cw.length + 1)
-    .fill(null)
-    .map(() => Array(uw.length + 1).fill(0));
-
-  for (let i = 0; i <= cw.length; i++) dp[i][0] = i;
-  for (let j = 0; j <= uw.length; j++) dp[0][j] = j;
-
-  for (let i = 1; i <= cw.length; i++) {
-    for (let j = 1; j <= uw.length; j++) {
-      const cost = normalize(cw[i - 1]) === normalize(uw[j - 1]) ? 0 : 1;
-      dp[i][j] = Math.min(
-        dp[i - 1][j] + 1, // deletion (missing)
-        dp[i][j - 1] + 1, // insertion (extra)
-        dp[i - 1][j - 1] + cost // substitution (wrong)
-      );
+  // Build edit distance matrix
+  const dp = Array(cw.length+1).fill(null).map(()=>Array(uw.length+1).fill(0));
+  for(let i=0;i<=cw.length;i++) dp[i][0]=i;
+  for(let j=0;j<=uw.length;j++) dp[0][j]=j;
+  for(let i=1;i<=cw.length;i++){
+    for(let j=1;j<=uw.length;j++){
+      const cost = normalize(cw[i-1])===normalize(uw[j-1])?0:1;
+      dp[i][j] = Math.min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+cost);
     }
   }
 
   // Traceback
-  let i = cw.length;
-  let j = uw.length;
-  const result = [];
-
-  while (i > 0 || j > 0) {
-    if (i > 0 && j > 0 && normalize(cw[i - 1]) === normalize(uw[j - 1])) {
-      result.unshift(`<span class="word ok">${uw[j - 1]}</span>`);
+  let i=cw.length, j=uw.length, result=[];
+  while(i>0 || j>0){
+    if(i>0 && j>0 && normalize(cw[i-1])===normalize(uw[j-1])){
+      result.unshift(`<span class="word ok">${uw[j-1]}</span>`);
       i--; j--;
-    } else if (j > 0 && (i === 0 || dp[i][j - 1] <= dp[i - 1][j])) {
-      // Extra word
-      result.unshift(`<span class="word extra">${strike(uw[j - 1])}</span>`);
+    } else if(j>0 && (i===0 || dp[i][j-1]<=dp[i-1][j])){
+      result.unshift(`<span class="word extra">${strike(uw[j-1])}</span>`);
       j--;
-    } else if (i > 0 && (j === 0 || dp[i - 1][j] < dp[i][j - 1])) {
-      // Missing word
-      result.unshift(`<span class="word missing">(${cw[i - 1]})</span>`);
+    } else if(i>0 && (j===0 || dp[i-1][j]<dp[i][j-1])){
+      result.unshift(`<span class="word missing">(${cw[i-1]})</span>`);
       i--;
     } else {
-      // Wrong word
-      result.unshift(
-        `<span class="word spelling">${strike(uw[j - 1])} (${cw[i - 1]})</span>`
-      );
+      result.unshift(`<span class="word spelling">${strike(uw[j-1])} (${cw[i-1]})</span>`);
       i--; j--;
     }
   }
-
   return result.join(" ");
 }
 
-function strike(text) {
-  return text.split("").map(c => c + "\u0336").join("");
-}
-
-
+// === Show review ===
 function showReview(uTitle, uVerse){
   quizCard.style.display='none';
   reviewCard.style.display='block';
   const c = session.current;
+
   correctTitle.textContent = c.title;
   correctVerse.textContent = c.verse;
-  userTitleEl.textContent = uTitle || "—";
 
-  userVerseBox.innerHTML = "";
+  userTitleEl.textContent = uTitle || "—";
   userVerseBox.innerHTML = highlightComparison(c.verse,uVerse);
 }
-
 </script>
-</body>
-</html>
-
