@@ -54,6 +54,12 @@ button.ghost:hover {
   font-size: 16px;
   line-height: 1.6;
 }
+  .user-verse .word {
+  display: inline;
+  margin: 0 1px;
+  padding: 0 2px;
+  border-radius: 3px;
+}
   /* Make review page text bigger and consistent */
 #correctVerse, #userVerseBox {
   font-size: 18px;           /* bigger and easy to read */
@@ -68,13 +74,6 @@ button.ghost:hover {
   font-size: 17px;
   margin: 4px 0 10px;
   color: #111;
-}
-
-.user-verse .word {
-  display: inline;
-  margin: 0 1px;
-  padding: 0 2px;
-  border-radius: 3px;
 }
 
 /* Colors remain same but font size adjusted */
@@ -326,8 +325,12 @@ function showReview(uTitle, uVerse){
   const c = session.current;
   correctTitle.textContent = c.title;
   correctVerse.textContent = c.verse;
-  userVerseBox.innerHTML = highlightComparison(c.verse, uVerse);
+  userTitleEl.textContent = uTitle || "—";
+
+  userVerseBox.innerHTML = "";
+  userVerseBox.innerHTML = highlightComparison(c.verse,uVerse);
 }
+
 </script>
 </body>
 </html>
