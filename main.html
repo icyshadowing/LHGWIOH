@@ -34,6 +34,15 @@ select,input,textarea,button{
   border:1px solid #ccc;
   font-size:15px;
 }
+/* Quiz page labels */
+#quizCard label {
+  font-size: 17px;   /* bigger than input text */
+  font-weight: 600;
+  text-align: left;
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
 
 textarea{min-height:80px; resize:vertical;}
 button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer;}
@@ -80,12 +89,13 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 </div>
 
 <div id="reviewCard" class="card" style="display:none;">
-  <h2>Review</h2>
+  <h2 id="reviewHeading">Review</h2>
 
-  <div><strong>Correct Title:</strong> <span id="correctTitle"></span></div>
+
+  <div><strong>Correct Answer:</strong> <span id="correctTitle"></span></div>
   <div id="correctVerse" class="muted"></div>
 
-  <div style="margin-top:15px;"><strong>Your Title:</strong> <span id="userTitle"></span></div>
+  <div style="margin-top:15px;"><strong>Your Answer:</strong> <span id="userTitle"></span></div>
   <div id="userVerseBox" class="user-verse"></div>
 
   <button id="nextBtn">Next</button>
@@ -239,10 +249,16 @@ function showReview(uTitle, uVerse){
   reviewCard.style.display='block';
   const c = session.current;
 
+  // Set heading to verse reference
+  document.getElementById('reviewHeading').textContent = c.ref;
+
+  // Correct info
   correctTitle.textContent = c.title;
   correctVerse.textContent = c.verse;
 
+  // User input
   userTitleEl.textContent = uTitle || "—";
   userVerseBox.innerHTML = highlightComparison(c.verse,uVerse);
 }
+
 </script>
