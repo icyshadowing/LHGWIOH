@@ -129,6 +129,9 @@ button.ghost:hover {
     <strong>Correct Verse:</strong>
     <div id="correctVerse" class="user-verse muted"></div>
   </div>
+  <div style="margin-top:15px;">
+    <strong>Your Title:</strong> <span id="userTitle"></span>
+  </div>
 
   <div style="margin-bottom:8px;"><strong>Your Input:</strong></div>
   <div class="user-verse" id="userVerseBox"></div>
@@ -190,6 +193,8 @@ const userVerseBox = document.getElementById('userVerseBox');
 const nextBtn = document.getElementById('nextBtn');
 const retryBtn = document.getElementById('retryBtn');
 const backBtn = document.getElementById('backBtn');
+const userTitleEl = document.getElementById('userTitle');
+
 
 function populatePackSelect() {
   packSelect.innerHTML = "";
