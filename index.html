@@ -11,7 +11,22 @@ h1,h2{margin:0 0 12px 0;}
 .card { background:#fff; padding:24px 20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:20px; text-align:center; }
 /* Quiz page labels and inputs alignment */
 #quizCard label { font-size: 17px; font-weight: 600; text-align: left; display: block; margin: 0 0 4px 0; width: 90%; max-width: 600px; margin-left: auto; margin-right: auto; }
-#quizCard input, #quizCard textarea { width: 90%; max-width: 600px; display: block; margin: 0 auto 12px auto; padding:10px; font-size:15px; border-radius:8px; border:1px solid #ccc; }
+#quizCard input, 
+#quizCard textarea {
+  width: 90%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto 12px auto;
+  padding: 10px;
+  font-size: 15px;
+  font-family: inherit;      /* Ensures both use the same font as body */
+  line-height: 1.4;          /* Makes verse text look balanced */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  resize: vertical;          /* Optional: allows resizing textarea */
+}
+
 /* Buttons */
 button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer;padding:10px 16px;margin:6px;}
 button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,235,0.3);}
