@@ -599,6 +599,25 @@ const VERSE_PACKS = {
   {title:"Made Complete",ref:"Colossians 2:9-10",verse:"For in Christ all the fullness of the Deity lives in bodily form, and you have been given fullness in Christ, who is the head over every power and authority."},
   ],
 };
+document.addEventListener("DOMContentLoaded", () => {
+  const packSelect = document.getElementById('packSelect');
+
+  if (!packSelect) {
+    console.error("Dropdown element not found!");
+    return;
+  }
+
+  packSelect.innerHTML = ""; // Clear any old options
+
+  for (let packName in VERSE_PACKS) {
+    if (VERSE_PACKS.hasOwnProperty(packName)) {
+      const option = document.createElement("option");
+      option.value = packName;        // Actual value
+      option.textContent = packName;  // Visible text
+      packSelect.appendChild(option);
+    }
+  }
+});
 // === Elements ===
 const packSelect = document.getElementById('packSelect');
 const startQuizBtn = document.getElementById('startQuizBtn');
