@@ -226,7 +226,7 @@ const VERSE_PACKS = {
   {title:"Daniel - Giving Top Priority To The Fellowship",ref:"Daniel 6:10",verse:"Now when Daniel learned that the decree had been published, he went home to his upstairs room where the windows opened toward Jerusalem. Three times a day he got down on his knees and prayed, giving thanks to his God, just as he had done before."},
   {title:"Disciples - Understanding The Word When Alone With Jesus",ref:"Mark 4:34",verse:"He did not say anything to them without using a parable. But when he was alone with his own disciples, he explained everything."},
   ],
-"The Word,":[
+"The Word":[
   {title:"Inspired By God",ref:"2 Timothy 3:16",verse:"All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness,"},
   {title:"Inspired By God",ref:"2 Peter 1:21",verse:"For prophecy never had its origin in the will of man, but men spoke from God as they were carried along by the Holy Spirit."},
   {title:"Standing Forever And Never Changing",ref:"Matthew 24:35",verse:"Heaven and earth will pass away, but my words will never pass away."},
@@ -599,25 +599,7 @@ const VERSE_PACKS = {
   {title:"Made Complete",ref:"Colossians 2:9-10",verse:"For in Christ all the fullness of the Deity lives in bodily form, and you have been given fullness in Christ, who is the head over every power and authority."},
   ],
 };
-document.addEventListener("DOMContentLoaded", () => {
-  const packSelect = document.getElementById('packSelect');
-
-  if (!packSelect) {
-    console.error("Dropdown element not found!");
-    return;
-  }
-
-  packSelect.innerHTML = ""; // Clear any old options
-
-  for (let packName in VERSE_PACKS) {
-    if (VERSE_PACKS.hasOwnProperty(packName)) {
-      const option = document.createElement("option");
-      option.value = packName;        // Actual value
-      option.textContent = packName;  // Visible text
-      packSelect.appendChild(option);
-    }
-  }
-});
+  
 // === Elements ===
 const packSelect = document.getElementById('packSelect');
 const startQuizBtn = document.getElementById('startQuizBtn');
