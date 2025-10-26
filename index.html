@@ -41,7 +41,8 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 .ok{color:#111;}
 .spelling,.extra{text-decoration:line-through; color:#0b66ff;}
 .missing{color:#ff2e2e;}
-.muted{color:#555;font-size:13px;}
+.muted{color:#111;font-size:13px;}
+
 </style>
 </head>
 <body>
@@ -709,16 +710,27 @@ function highlightComparison(correct, user){
   }
   return result.join(" ");
 }
-function showReview(uTitle, uVerse){
-  quizCard.style.display='none';
-  reviewCard.style.display='block';
+function showReview(uTitle, uVerse) {
+  quizCard.style.display = 'none';
+  reviewCard.style.display = 'block';
+
   const c = session.current;
   reviewHeading.textContent = c.ref;
   correctTitle.textContent = c.title;
   correctVerse.textContent = c.verse;
+
+  // === Set user inputs ===
   userTitleEl.textContent = uTitle || "—";
-  userVerseBox.innerHTML = highlightComparison(c.verse,uVerse);
+  userVerseBox.innerHTML = highlightComparison(c.verse, uVerse);
+
+  // === Title check for color ===
+  if (uTitle.trim().toLowerCase() === c.title.trim().toLowerCase()) {
+    userTitleEl.style.color = "black"; // correct → normal
+  } else {
+    userTitleEl.style.color = "blue"; // wrong → highlight blue
+  }
 }
+
 </script>
 </body>
 </html>
