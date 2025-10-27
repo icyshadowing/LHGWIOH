@@ -171,13 +171,13 @@ const VERSE_PACKS = {
   { title: "Relationship with others", ref: "Proverbs 16:7", verse: "When a man's ways are pleasing to the LORD, he makes even his enemies live at peace with him." },
   { title: "Life paths", ref: "Proverbs 3:5-6", verse: "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways acknowledge him, and he will make your paths straight." },
   { title: "Worldly desires", ref: "Ephesians 4:22-24", verse: "You were taught, with regard to your former way of life, to put off your old self, which is being corrupted by its deceitful desires; to be made new in the attitude of your minds; and to put on the new self, created to be like God in true righteousness and holiness." },
-  { title: "Lusts [KJV]", ref: "2 Timothy 2:22", verse: "Flee the evil desires of youth, and pursue righteousness, faith, love and peace, along with those who call on the Lord out of a pure heart." },
+  { title: "Lusts", ref: "2 Timothy 2:22", verse: "Flee also youthful lusts: but follow righteousness, faith, charity, peace, with them that call on the Lord out of a pure heart." },
   { title: "Possessions", ref: "1 Timothy 6:7-9", verse: "For we brought nothing into the world, and we can take nothing out of it. But if we have food and clothing, we will be content with that. People who want to get rich fall into temptation and a trap and into many foolish and harmful desires that plunge men into ruin and destruction." },
   { title: "Time managing", ref: "Ephesians 5:15-16", verse: "Be very careful, then, how you live--not as unwise but as wise, making the most of every opportunity, because the days are evil." },
   { title: "God's calling", ref: "Mark 1:20", verse: "Without delay he called them, and they left their father Zebedee in the boat with the hired men and followed him." },
   { title: "Paul", ref: "Philippians 1:20", verse: "I eagerly expect and hope that I will in no way be ashamed, but will have sufficient courage so that now as always Christ will be exalted in my body, whether by life or by death." },
   { title: "Timothy", ref: "Philippians 2:21-22", verse: "For everyone looks out for his own interests, not those of Jesus Christ. But you know that Timothy has proved himself, because as a son with his father he has served with me in the work of the gospel." },
-  { title: "Our faith fathers", ref: "Hebrews 11:36-38", verse: "Some faced jeers and flogging, while still others were chained and put in prison. They were stoned; they were sawed in two; they were put to death by the sword. They went about in sheepskins and goatskins, destitute, persecuted and mistreated-- the world was not worthy of them. They wandered in deserts and mountains, and in caves and holes in the ground." }
+  { title: "Our faith fathers", ref: "Hebrews 11:36-38a", verse: "Some faced jeers and flogging, while still others were chained and put in prison. They were stoned; they were sawed in two; they were put to death by the sword. They went about in sheepskins and goatskins, destitute, persecuted and mistreated-- the world was not worthy of them." }
   ],
 "AOS": [
   {title:"Can Be Assured",ref:"2 Corinthians 13:5",verse:"Examine yourselves to see whether you are in the faith; test yourselves. Do you not realize that Christ Jesus is in you - unless, of course, you fail the test?"},
@@ -702,10 +702,10 @@ function highlightComparison(correct, user){
     } else if(j>0 && (i===0 || dp[i][j-1]<=dp[i-1][j])){
       result.unshift(`<span class="word extra">${strike(uw[j-1])}</span>`); j--;
     } else if(i>0 && (j===0 || dp[i-1][j]<dp[i][j-1])){
-      result.unshift(`<span class="word missing">(${cw[i-1]})</span>`); i--;
+      result.unshift(`<span class="word missing">${cw[i-1]}</span>`); i--;
     } else {
       result.unshift(`<span class="word extra">${strike(uw[j-1])}</span>`);
-      result.push(`<span class="word missing">(${cw[i-1]})</span>`); i--; j--;
+      result.push(`<span class="word missing">${cw[i-1]})</span>`; i--; j--;
     }
   }
   return result.join(" ");
