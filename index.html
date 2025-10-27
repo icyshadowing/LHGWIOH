@@ -705,7 +705,7 @@ function highlightComparison(correct, user){
       result.unshift(`<span class="word missing">${cw[i-1]}</span>`); i--;
     } else {
       result.unshift(`<span class="word extra">${strike(uw[j-1])}</span>`);
-      result.push(`<span class="word missing">${cw[i-1]})</span>`; i--; j--;
+      result.push(`<span class="word missing">${cw[i-1]}</span>`); i--; j--;
     }
   }
   return result.join(" ");
