@@ -42,6 +42,34 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 .spelling,.extra{text-decoration:line-through; color:#0b66ff;}
 .missing{color:#ff2e2e;}
 .muted{color:#111;font-size:13px;}
+#packsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.pack-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.pack-card:hover {
+  transform: scale(1.03);
+}
+
+.verse-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
 
 </style>
 </head>
@@ -53,6 +81,7 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 <h2>Select a Pack</h2>
 <select id="packSelect"></select>
 <button id="startQuizBtn">Start Quiz</button>
+<button id="viewPacksBtn">View All Packs</button>
 </div>
 <!-- Quiz Page -->
 <div id="quizCard" class="card" style="display:none;">
@@ -78,6 +107,11 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 <strong>Legend:</strong><br> Black = correct, Blue = wrong/extra, Red = missing
 </div>
 </div>
+</div>
+<div id="viewPacksCard" style="display:none;">
+  <h2>Verse Packs</h2>
+  <div id="packsContainer"></div>
+  <button id="backToMenuBtn">Back</button>
 </div>
 <script>
 // === Verse packs ===
@@ -682,6 +716,60 @@ function backToMain(){
   document.getElementById('packSelectCard').style.display='block';
   populatePackSelect();
 }
+const viewPacksBtn = document.getElementById("viewPacksBtn");
+const viewPacksCard = document.getElementById("viewPacksCard");
+const packsContainer = document.getElementById("packsContainer");
+const backToMenuBtn = document.getElementById("backToMenuBtn");
+
+// When user clicks "View Packs"
+viewPacksBtn.onclick = () => {
+  document.getElementById("packSelectCard").style.display = "none";
+  viewPacksCard.style.display = "block";
+  renderPacks();
+};
+
+// Go back to main menu
+backToMenuBtn.onclick = () => {
+  viewPacksCard.style.display = "none";
+  document.getElementById("packSelectCard").style.display = "block";
+};
+
+// Render all packs as clickable cards
+function renderPacks() {
+  packsContainer.innerHTML = "";
+
+  for (const packName in VERSE_PACKS) {
+    const packCard = document.createElement("div");
+    packCard.className = "pack-card";
+    packCard.innerHTML = `<h3>${packName}</h3>`;
+    packCard.onclick = () => showPackVerses(packName);
+    packsContainer.appendChild(packCard);
+  }
+}
+
+// Show all verses inside a pack
+function showPackVerses(packName) {
+  const pack = VERSE_PACKS[packName];
+  packsContainer.innerHTML = `
+    <button id="backToPacksBtn">← Back to Packs</button>
+    <h3>${packName}</h3>
+  `;
+
+  pack.forEach(v => {
+    const vCard = document.createElement("div");
+    vCard.className = "verse-card";
+    vCard.innerHTML = `
+      <h4>${v.title}</h4>
+      <p><strong>${v.ref}</strong></p>
+      <p>${v.verse}</p>
+    `;
+    packsContainer.appendChild(vCard);
+  });
+
+  // Back button inside a pack view
+  document.getElementById("backToPacksBtn").onclick = renderPacks;
+}
+
 // === Comparison ===
 function tokenize(s){ return s ? s.trim().split(/\s+/) : []; }
 function normalize(w){ return w.replace(/[\W_]+/g,'').toLowerCase(); }
