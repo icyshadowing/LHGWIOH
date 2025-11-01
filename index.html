@@ -106,7 +106,7 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 <div class="muted" style="margin-top:8px;">
 <strong>Legend:</strong><br> Black = correct, Blue = wrong/extra, Red = missing
 </div>
-<div id="viewPacksCard" style="display:none;">
+<div id="viewPacksCard" class="card" style="display:none; padding:20px;">
 <h2>Verse Packs</h2>
 <div id="packsContainer"></div>
 <button id="backToMenuBtn">Back</button>
@@ -821,8 +821,10 @@ function showReview(uTitle, uVerse) {
     userTitleEl.style.color = "blue"; // wrong → highlight blue
   }
 }
+window.onerror = function(message, source, lineno, colno, error) {
+  document.body.innerHTML = `<pre style="color:red; font-size:16px; padding:20px;">Error: ${message}\nLine: ${lineno}</pre>`;
+};
 
 </script>
-<p style="text-align:center; color:red;">If you see this text, HTML loaded correctly</p>
 </body>
 </html>
