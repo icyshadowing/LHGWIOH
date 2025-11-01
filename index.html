@@ -716,6 +716,7 @@ function backToMain(){
   document.getElementById('packSelectCard').style.display='block';
   populatePackSelect();
 }
+
 const viewPacksBtn = document.getElementById("viewPacksBtn");
 const viewPacksCard = document.getElementById("viewPacksCard");
 const packsContainer = document.getElementById("packsContainer");
@@ -734,40 +735,70 @@ backToMenuBtn.onclick = () => {
   document.getElementById("packSelectCard").style.display = "block";
 };
 
-// Render all packs as clickable cards
+// Render all packs as clickable cards safely
 function renderPacks() {
-  packsContainer.innerHTML = "";
+  try {
+    packsContainer.innerHTML = "";
 
-  for (const packName in VERSE_PACKS) {
-    const packCard = document.createElement("div");
-    packCard.className = "pack-card";
-    packCard.innerHTML = `<h3>${packName}</h3>`;
-    packCard.onclick = () => showPackVerses(packName);
-    packsContainer.appendChild(packCard);
+    for (const packName in VERSE_PACKS) {
+      if (!VERSE_PACKS.hasOwnProperty(packName)) continue;
+
+      const packCard = document.createElement("div");
+      packCard.className = "pack-card";
+      packCard.textContent = packName;
+      packCard.onclick = () => showPackVerses(packName);
+      packsContainer.appendChild(packCard);
+    }
+  } catch (e) {
+    packsContainer.innerHTML = `<pre style="color:red; padding:20px;">Error rendering packs: ${e.message}</pre>`;
   }
 }
 
-// Show all verses inside a pack
+// Show all verses inside a pack safely
 function showPackVerses(packName) {
-  const pack = VERSE_PACKS[packName];
-  packsContainer.innerHTML = `
-    <button id="backToPacksBtn">← Back to Packs</button>
-    <h3>${packName}</h3>
-  `;
+  try {
+    const pack = VERSE_PACKS[packName];
+    if (!pack || !Array.isArray(pack)) throw new Error("Pack data invalid");
 
-  pack.forEach(v => {
-    const vCard = document.createElement("div");
-    vCard.className = "verse-card";
-    vCard.innerHTML = `
-      <h4>${v.title}</h4>
-      <p><strong>${v.ref}</strong></p>
-      <p>${v.verse}</p>
-    `;
-    packsContainer.appendChild(vCard);
-  });
+    // Clear container
+    packsContainer.innerHTML = "";
 
-  // Back button inside a pack view
-  document.getElementById("backToPacksBtn").onclick = renderPacks;
+    // Back button
+    const backBtn = document.createElement("button");
+    backBtn.textContent = "← Back to Packs";
+    backBtn.onclick = renderPacks;
+    backBtn.style.marginBottom = "12px";
+    packsContainer.appendChild(backBtn);
+
+    // Pack title
+    const packTitle = document.createElement("h3");
+    packTitle.textContent = packName;
+    packsContainer.appendChild(packTitle);
+
+    // Each verse
+    pack.forEach(v => {
+      const vCard = document.createElement("div");
+      vCard.className = "verse-card";
+
+      const titleEl = document.createElement("h4");
+      titleEl.textContent = v.title;
+      vCard.appendChild(titleEl);
+
+      const refEl = document.createElement("p");
+      const strong = document.createElement("strong");
+      strong.textContent = v.ref;
+      refEl.appendChild(strong);
+      vCard.appendChild(refEl);
+
+      const verseEl = document.createElement("p");
+      verseEl.textContent = v.verse;
+      vCard.appendChild(verseEl);
+
+      packsContainer.appendChild(vCard);
+    });
+  } catch (e) {
+    packsContainer.innerHTML = `<pre style="color:red; padding:20px;">Error showing verses: ${e.message}</pre>`;
+  }
 }
 
 // === Comparison ===
@@ -821,9 +852,7 @@ function showReview(uTitle, uVerse) {
     userTitleEl.style.color = "blue"; // wrong → highlight blue
   }
 }
-window.onerror = function(message, source, lineno, colno, error) {
-  document.body.innerHTML = `<pre style="color:red; font-size:16px; padding:20px;">Error: ${message}\nLine: ${lineno}</pre>`;
-};
+
 
 </script>
 </body>
