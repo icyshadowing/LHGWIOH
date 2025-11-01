@@ -635,7 +635,6 @@ const VERSE_PACKS = {
   ],
 };
   
-// === Elements ===
 const packSelect = document.getElementById('packSelect');
 const startQuizBtn = document.getElementById('startQuizBtn');
 const quizCard = document.getElementById('quizCard');
@@ -770,7 +769,6 @@ function showPackVerses(packName) {
   document.getElementById("backToPacksBtn").onclick = renderPacks;
 }
 
-
 // === Comparison ===
 function tokenize(s){ return s ? s.trim().split(/\s+/) : []; }
 function normalize(w){ return w.replace(/[\W_]+/g,'').toLowerCase(); }
@@ -822,7 +820,6 @@ function showReview(uTitle, uVerse) {
     userTitleEl.style.color = "blue"; // wrong → highlight blue
   }
 }
-
 
 </script>
 </body>
