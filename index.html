@@ -6,7 +6,7 @@
 <title>LHGWIOH</title>
 <style>
 body { font-family: Arial, sans-serif; background:#f7f8fb; margin:0; padding:20px; color:#111; }
-h1,h2{margin:0 0 12px 0;}
+h1,h2{margin:0 0 12px 0;text-align:center;}
 .container { max-width:700px; margin:auto; }
 .card { background:#fff; padding:24px 20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:20px; text-align:left; }
 /* Quiz page labels and inputs alignment */
@@ -740,13 +740,21 @@ backToMenuBtn.onclick = () => {
 };
 
 // Render all packs as clickable cards
+// Render all packs as clickable cards
 function renderPacks() {
   packsContainer.innerHTML = "";
 
   for (const packName in VERSE_PACKS) {
     const packCard = document.createElement("div");
     packCard.className = "pack-card";
-    packCard.innerHTML = `<h3>${packName}</h3>`;
+
+    // Pack title in the card
+    const packTitleCard = document.createElement("div");
+    packTitleCard.className = "pack-title-card verse-card";
+    packTitleCard.innerHTML = `<strong>${packName}</strong>`;
+    packCard.appendChild(packTitleCard);
+
+    // Make the whole card clickable
     packCard.onclick = () => showPackVerses(packName);
     packsContainer.appendChild(packCard);
   }
@@ -755,21 +763,36 @@ function renderPacks() {
 // Show all verses inside a pack
 function showPackVerses(packName) {
   const pack = VERSE_PACKS[packName];
-  packsContainer.innerHTML = `
-    <button id="backToPacksBtn">← Back to Packs</button>
-    <h3>${packName}</h3>
-  `;
+  packsContainer.innerHTML = ""; // clear container
 
+  // Back button
+  const backBtnInside = document.createElement("button");
+  backBtnInside.textContent = "← Back to Packs";
+  backBtnInside.onclick = renderPacks;
+  packsContainer.appendChild(backBtnInside);
+
+  // Pack name as title card
+  const packTitleCard = document.createElement("div");
+  packTitleCard.className = "pack-title-card verse-card";
+  packTitleCard.innerHTML = `<strong>${packName}</strong>`;
+  packsContainer.appendChild(packTitleCard);
+
+  // Add each verse as separate cards (title card + verse card)
   pack.forEach(v => {
-    const vCard = document.createElement("div");
-    vCard.className = "verse-card";
-    vCard.innerHTML = `
-      <h4>${v.title}</h4>
-      <p><strong>${v.ref}</strong></p>
-      <p>${v.verse}</p>
-    `;
-    packsContainer.appendChild(vCard);
+    // Verse title card
+    const vTitleCard = document.createElement("div");
+    vTitleCard.className = "verse-card";
+    vTitleCard.innerHTML = `<strong>${v.title}</strong>`;
+    packsContainer.appendChild(vTitleCard);
+
+    // Verse reference + content card
+    const vContentCard = document.createElement("div");
+    vContentCard.className = "verse-card";
+    vContentCard.innerHTML = `<p><strong>${v.ref}</strong></p><p>${v.verse}</p>`;
+    packsContainer.appendChild(vContentCard);
   });
+}
+
 
   // Back button inside a pack view
   document.getElementById("backToPacksBtn").onclick = renderPacks;
