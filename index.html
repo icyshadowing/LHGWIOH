@@ -4,75 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LHGWIOH</title>
-<style>
-body { font-family: Arial, sans-serif; background:#f7f8fb; margin:0; padding:20px; color:#111; }
-h1,h2{margin:0 0 12px 0;text-align:center;}
-.container { max-width:700px; margin:auto; }
-.card { background:#fff; padding:24px 20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:20px; text-align:left; }
-/* Quiz page labels and inputs alignment */
-#quizCard label { font-size: 17px; font-weight: 600; text-align: left; display: block; margin: 0 0 4px 0; width: 90%; max-width: 600px; margin-left: auto; margin-right: auto; }
-#quizCard input,
-#quizCard textarea {
-  width: 90%;
-  max-width: 600px;
-  display: block;
-  margin: 0 auto 12px auto;
-  padding: 10px;
-  font-size: 16px;
-  font-family: inherit;
-  line-height: 1.5;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  color: #111;
-  resize: vertical;
-  background-color: #fff;
-}
-
-/* Buttons */
-button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer;padding:10px 16px;margin:6px;}
-button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,235,0.3);}
-
-/* Review page formatting */
-#reviewCard { text-align: left; }
-#reviewCard > div { margin-bottom: 10px; }
-#correctTitle, #userTitle, #correctVerse, #userVerseBox { font-size:18px; line-height:1.6; margin-left:0; text-align:left; }
-.user-verse .word { font-size:18px; line-height:1.6; margin-left:0; padding:0 1px; }
-.ok{color:#111;}
-.spelling,.extra{text-decoration:line-through; color:#0b66ff;}
-.missing{color:#ff2e2e;}
-.muted{color:#111;font-size:13px;}
-
-#packsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-  padding: 16px;
-  text-align: left;
-}
-
-.pack-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  padding: 16px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.pack-card:hover {
-  transform: scale(1.03);
-}
-
-.verse-card {
-  background: #f5deb3;
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
@@ -119,6 +51,7 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
     <button id="backToMenuBtn">Back</button>
   </div>
 </div>
-<script>
-
+<script src="quiz.js"></script>
+<script src="data.js"></script>
+</body>
 </html>
