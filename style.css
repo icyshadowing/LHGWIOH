@@ -21,7 +21,15 @@ h1,h2{margin:0 0 12px 0;text-align:center;}
   resize: vertical;
   background-color: #fff;
 }
-
+#packSelectCard { text-align: center; }
+#packSelectCard select {
+  display: block;
+  margin: 0 auto 12px auto; /* centers it horizontally */
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
 /* Buttons */
 button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer;padding:10px 16px;margin:6px;}
 button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,235,0.3);}
@@ -35,15 +43,7 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 .spelling,.extra{text-decoration:line-through; color:#0b66ff;}
 .missing{color:#ff2e2e;}
 .muted{color:#111;font-size:13px;}
-#packSelectCard { text-align: center; }
-#packSelectCard select {
-  display: block;
-  margin: 0 auto 12px auto; /* centers it horizontally */
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
+
 
 #packsContainer {
   display: grid;
