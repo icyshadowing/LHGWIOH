@@ -1,7 +1,6 @@
 body { font-family: Arial, sans-serif; background:#f7f8fb; margin:0; padding:20px; color:#111; }
 h1,h2{margin:0 0 12px 0;text-align:center;}
 .container { max-width:700px; margin:auto; }
-.packSelect{ text-align:center;}
 .card { background:#fff; padding:24px 20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:20px; text-align:left; }
 /* Quiz page labels and inputs alignment */
 #quizCard label { font-size: 17px; font-weight: 600; text-align: left; display: block; margin: 0 0 4px 0; width: 90%; max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -37,6 +36,15 @@ button.ghost{background:transparent;color:#2563eb;border:1px solid rgba(37,99,23
 .missing{color:#ff2e2e;}
 .muted{color:#111;font-size:13px;}
 
+#packSelectCard select {
+  display: block;
+  margin: 0 auto 12px auto; /* centers it horizontally */
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+#packSelectCard { text-align: center; }
 #packsContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
