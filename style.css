@@ -3,7 +3,7 @@ h1,h2{margin:0 0 12px 0;text-align:center;}
 .container { max-width:700px; margin:auto; }
 .card { background:#fff; padding:24px 20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:20px; text-align:left; }
 /* Quiz page labels and inputs alignment */
-#quizCard label { font-size: 17px; font-weight: 600; text-align: left; display: block; margin: 0 0 4px 0; width: 90%; max-width: 600px; margin-left: auto; margin-right: auto; }
+#quizCard label { font-size: 18px; font-weight: 600; text-align: left; display: block; margin: 0 0 4px 0; width: 90%; max-width: 600px; margin-left: auto; margin-right: auto; }
 #quizCard input,
 #quizCard textarea {
   width: 90%;
