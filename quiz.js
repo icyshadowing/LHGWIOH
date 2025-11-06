@@ -15,6 +15,10 @@ const userVerseBox = document.getElementById('userVerseBox');
 const nextBtn = document.getElementById('nextBtn');
 const retryBtn = document.getElementById('retryBtn');
 const backBtn = document.getElementById('backBtn');
+const mainMenu = document.getElementById("mainMenu");
+const goToPackSelectBtn = document.getElementById("goToPackSelectBtn");
+const backToMainBtn = document.getElementById("backToMainBtn");
+
 
 let session = null;
 
@@ -80,13 +84,26 @@ retryBtn.onclick = () => {
 };
 
 backBtn.onclick = backToMain;
+goToPackSelectBtn.onclick = () => {
+  mainMenu.style.display = "none";
+  packSelectCard.style.display = "block";
+  populatePackSelect();
+};
+
+backToMainBtn.onclick = () => {
+  packSelectCard.style.display = "none";
+  mainMenu.style.display = "block";
+};
 
 function backToMain() {
   reviewCard.style.display = 'none';
   quizCard.style.display = 'none';
-  document.getElementById('packSelectCard').style.display = 'block';
+  packSelectCard.style.display = 'none';
+  viewPacksCard.style.display = 'none';
+  mainMenu.style.display = 'block';
   populatePackSelect();
 }
+
 
 const viewPacksBtn = document.getElementById("viewPacksBtn");
 const viewPacksCard = document.getElementById("viewPacksCard");
