@@ -18,15 +18,16 @@ h1, h2 {
 }
 #mainMenu {
   text-align: center;
+  margin-top: 40px;
 }
 
 #mainMenu button {
-  display: block;
+  display: inline-block;
+  margin: 10px;
   width: 200px;
-  margin: 12px auto;
-  text-align: center;
   font-size: 18px;
 }
+
 /* ===== Card Layout ===== */
 .card {
   background: #fff;
