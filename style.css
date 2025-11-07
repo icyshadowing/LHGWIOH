@@ -6,6 +6,16 @@ body {
   margin: 0;
   padding: 20px;
 }
+
+h1, h2 {
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+}
 #mainMenu {
   text-align: center;
 }
@@ -17,16 +27,6 @@ body {
   text-align: center;
   font-size: 18px;
 }
-h1, h2 {
-  margin: 0 0 12px 0;
-  text-align: center;
-}
-
-.container {
-  max-width: 700px;
-  margin: auto;
-}
-
 /* ===== Card Layout ===== */
 .card {
   background: #fff;
