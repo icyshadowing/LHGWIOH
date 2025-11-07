@@ -112,6 +112,7 @@ const backToMenuBtn = document.getElementById("backToMenuBtn");
 
 viewPacksBtn.onclick = () => {
   document.getElementById("packSelectCard").style.display = "none";
+  mainMenu.style.display = "none";
   viewPacksCard.style.display = "block";
   renderPacks();
 };
