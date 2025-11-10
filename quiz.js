@@ -108,8 +108,8 @@ function backToMain() {
 const viewPacksBtn = document.getElementById("viewPacksBtn");
 const viewPacksCard = document.getElementById("viewPacksCard");
 const packsContainer = document.getElementById("packsContainer");
-const backToMenuBtn = document.getElementById("backTotopMenuBtn");
-const backToMenuBtn2 = document.getElementById("backTobtmMenuBtn");
+const backToMenuBtn = document.getElementById("backToMenuBtn");
+const backToMenuBtn2 = document.getElementById("backToMenuBtn2");
 
 
 
