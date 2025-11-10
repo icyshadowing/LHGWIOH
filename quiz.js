@@ -143,11 +143,24 @@ function renderPacks() {
 
 function showPackVerses(packName) {
   const pack = VERSE_PACKS[packName];
-  packsContainer.innerHTML = `
-    <button id="backToPacksBtn">← Back to Packs</button>
-    <h3>${packName}</h3>
-  `;
+  
+  // Clear the container first
+  packsContainer.innerHTML = "";
 
+  // === TOP Back to Packs button ===
+  const topBackBtn = document.createElement("button");
+  topBackBtn.id = "backToPacksTopBtn";
+  topBackBtn.textContent = "← Back to Packs";
+  topBackBtn.className = "ghost";
+  topBackBtn.onclick = renderPacks;
+  packsContainer.appendChild(topBackBtn);
+
+  // === Pack title ===
+  const title = document.createElement("h3");
+  title.textContent = packName;
+  packsContainer.appendChild(title);
+
+  // === Each verse in this pack ===
   pack.forEach(v => {
     const vCard = document.createElement("div");
     vCard.className = "verse-card";
@@ -159,8 +172,15 @@ function showPackVerses(packName) {
     packsContainer.appendChild(vCard);
   });
 
-  document.getElementById("backToPacksBtn").onclick = renderPacks;
+  // === BOTTOM Back to Packs button ===
+  const bottomBackBtn = document.createElement("button");
+  bottomBackBtn.id = "backToPacksBottomBtn";
+  bottomBackBtn.textContent = "← Back to Packs";
+  bottomBackBtn.className = "ghost";
+  bottomBackBtn.onclick = renderPacks;
+  packsContainer.appendChild(bottomBackBtn);
 }
+
 
 function tokenize(s) { return s ? s.trim().split(/\s+/) : []; }
 function normalize(w) { return w.replace(/[\W_]+/g,'').toLowerCase(); }
