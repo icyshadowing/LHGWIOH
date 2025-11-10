@@ -108,7 +108,10 @@ function backToMain() {
 const viewPacksBtn = document.getElementById("viewPacksBtn");
 const viewPacksCard = document.getElementById("viewPacksCard");
 const packsContainer = document.getElementById("packsContainer");
-const backToMenuBtn = document.getElementById("backToMenuBtn");
+const backToMenuBtn = document.getElementById("backTotopMenuBtn");
+const backToMenuBtn2 = document.getElementById("backTobtmMenuBtn");
+
+
 
 viewPacksBtn.onclick = () => {
   document.getElementById("packSelectCard").style.display = "none";
@@ -118,6 +121,11 @@ viewPacksBtn.onclick = () => {
 };
 
 backToMenuBtn.onclick = () => {
+  viewPacksCard.style.display = "none";
+  packSelectCard.style.display = "none";
+  mainMenu.style.display = "block";
+};
+backToMenuBtn2.onclick = () => {
   viewPacksCard.style.display = "none";
   packSelectCard.style.display = "none";
   mainMenu.style.display = "block";
