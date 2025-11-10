@@ -121,12 +121,10 @@ viewPacksBtn.onclick = () => {
 };
 
 backToMenuBtn.onclick = () => {
-  viewPacksCard.style.display = "none";
   packSelectCard.style.display = "none";
   mainMenu.style.display = "block";
 };
 backToMenuBtn2.onclick = () => {
-  viewPacksCard.style.display = "none";
   packSelectCard.style.display = "none";
   mainMenu.style.display = "block";
 };
