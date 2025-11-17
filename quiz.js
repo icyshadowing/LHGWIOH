@@ -67,7 +67,10 @@ startQuizBtn.onclick = () => {
   renderNext();
 };
 
-submitAnswerBtn.onclick = () => showReview(inputTitle.value.trim(), inputVerse.value.trim());
+submitAnswerBtn.onclick = () => {
+  if (advSession && !advSession.finished) submitAdvancedAnswer();
+  else showReview(inputTitle.value.trim(), inputVerse.value.trim());
+};
 skipBtn.onclick = () => showReview("", "");
 
 nextBtn.onclick = () => {
@@ -154,6 +157,11 @@ function showPackVerses(packName) {
   topBackBtn.className = "ghost";
   topBackBtn.onclick = renderPacks;
   packsContainer.appendChild(topBackBtn);
+
+  document.getElementById("startAdvancedQuizBtn").onclick = () => {
+  packSelect.multiple = true; // allow multiple packs
+  startAdvancedQuiz();
+  };
 
   // === Pack title ===
   const title = document.createElement("h3");
