@@ -8,8 +8,7 @@
 </head>
 <body>
   <div class="container">
-
-    <h1>LHGWIOH</h1>
+    <h1>LHGWIOH Quiz</h1>
 
     <!-- MAIN MENU -->
     <div id="mainMenu" class="card active">
@@ -19,40 +18,40 @@
       <button id="viewPacksBtn">View All Packs</button>
     </div>
 
-  
+    <!-- PACK SELECT -->
     <div id="packSelectCard" class="card">
       <h2>Select Pack(s)</h2>
       <select id="packSelect" multiple></select>
-      <div class="buttons">
-        <button id="startQuizBtn">Start Quiz</button>
-        <button id="backToMainBtn" class="ghost">Back to Main Menu</button>
-      </div>
+      <button id="startQuizBtn">Start Original Quiz</button>
+      <button id="backToMainBtn" class="ghost">Back to Main</button>
     </div>
 
-    <!-- QUIZ PAGE -->
+    <!-- QUIZ CARD -->
     <div id="quizCard" class="card">
       <h2 id="quizRef"></h2>
       <label>Title</label>
       <input id="inputTitle">
       <label>Verse</label>
       <textarea id="inputVerse"></textarea>
-      <div class="buttons">
+      <div class="quiz-buttons">
         <button id="submitAnswerBtn">Submit</button>
         <button id="skipBtn" class="ghost">Show Answer</button>
+        <button id="nextBtn" class="ghost">Next</button>
+        <button id="retryBtn" class="ghost">Retry</button>
       </div>
     </div>
 
-    <!-- REVIEW PAGE -->
+    <!-- REVIEW CARD -->
     <div id="reviewCard" class="card">
       <h2 id="reviewHeading">Review</h2>
       <div><strong>Correct Title:</strong> <span id="correctTitle"></span></div>
       <div id="correctVerse" class="muted"></div>
       <div><strong>Your Title:</strong> <span id="userTitleEl"></span></div>
       <div id="userVerseBox" class="user-verse"></div>
-      <div class="buttons">
+      <div class="review-buttons">
         <button id="nextBtn">Next</button>
         <button id="retryBtn" class="ghost">Try Again</button>
-        <button id="backBtn" class="ghost">Back to Main Menu</button>
+        <button id="backBtn" class="ghost">Back to Main</button>
       </div>
       <div class="muted legend">
         <strong>Legend:</strong><br>
@@ -60,7 +59,7 @@
       </div>
     </div>
 
-    <!-- VIEW PACKS PAGE -->
+    <!-- VIEW PACKS -->
     <div id="viewPacksCard" class="card">
       <h2>Verse Packs</h2>
       <button id="backToMenuBtn">Back to Main Menu</button>
