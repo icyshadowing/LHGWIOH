@@ -3,65 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LHGWIOH Quiz</title>
+  <title>LHGWIOH</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
 
-    <h1>LHGWIOH Quiz</h1>
+    <h1>LHGWIOH</h1>
 
     <!-- MAIN MENU -->
-    <div id="mainMenu" class="card active-card">
+    <div id="mainMenu" class="card" style="display:block;">
       <h2>Main Menu</h2>
-      <button id="goToPackSelectBtn">Review Quiz (Original)</button>
-      <button id="startAdvancedQuizBtn">SMC (Advanced)</button>
+      <button id="goToPackSelectBtn">Start Quiz</button>
       <button id="viewPacksBtn">View All Packs</button>
     </div>
 
     <!-- PACK SELECT PAGE -->
-    <div id="packSelectCard" class="card">
-      <h2>Select Packs</h2>
-      <select id="packSelect" multiple></select>
-      <button id="startQuizBtn">Start Original Quiz</button>
-      <button id="startAdvancedQuizFromSelectBtn">Start SMC Quiz</button>
-      <button id="backToMainBtn" class="ghost">Back to Main Menu</button>
+    <div id="packSelectCard" class="card" style="display:none;">
+      <h2>Select a Pack</h2>
+      <select id="packSelect"></select>
+      <button id="startQuizBtn">Start</button>
+      <button id="backToMainBtn" class="ghost">Back to Main Page</button>
     </div>
 
     <!-- QUIZ PAGE -->
-    <div id="quizCard" class="card">
+    <div id="quizCard" class="card" style="display:none;">
       <h2 id="quizRef"></h2>
       <label>Title</label>
       <input id="inputTitle">
       <label>Verse</label>
       <textarea id="inputVerse"></textarea>
       <button id="submitAnswerBtn">Submit</button>
-      <button id="skipBtn" class="ghost">Show Answer / Next</button>
-      <button id="nextBtn">Next</button>
-      <button id="retryBtn" class="ghost">Try Again</button>
-      <button id="backBtn" class="ghost">Back to Main</button>
+      <button id="skipBtn" class="ghost">Show Answer</button>
     </div>
 
     <!-- REVIEW PAGE -->
-    <div id="reviewCard" class="card">
+    <div id="reviewCard" class="card" style="display:none;">
       <h2 id="reviewHeading">Review</h2>
       <div><strong>Correct Title:</strong> <span id="correctTitle"></span></div>
       <div id="correctVerse" class="muted"></div>
-      <div><strong>Your Title:</strong> <span id="userTitleEl"></span></div>
+      <div><strong>Your Title:</strong> <span id="userTitle"></span></div>
       <div id="userVerseBox" class="user-verse"></div>
-      <button id="backBtnReview" class="ghost">Back to Main</button>
+      <button id="nextBtn">Next</button>
+      <button id="retryBtn" class="ghost">Try Again</button>
+      <button id="backBtn" class="ghost">Back to Main Page</button>
       <div class="muted" style="margin-top:8px;">
-        <strong>Legend:</strong><br>
-        Black = correct, Blue = wrong/extra, Red = missing
+        <strong>Legend:</strong><br>Black = correct, Blue = wrong/extra, Red = missing
       </div>
     </div>
 
     <!-- VIEW PACKS PAGE -->
-    <div id="viewPacksCard" class="card">
+    <div id="viewPacksCard" class="card" style="display:none;">
       <h2>Verse Packs</h2>
-      <button id="backToMenuBtn">Back to Main Menu</button>
+      <button id="backToMenuBtn">Back</button>
       <div id="packsContainer"></div>
-      <button id="backToMenuBtn2">Back to Main Menu</button>
+      <button id="backToMenuBtn2">Back</button>
     </div>
 
   </div>
