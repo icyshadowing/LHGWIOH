@@ -175,6 +175,23 @@ function showReview(userTitle, userVerse) {
   userTitleEl.textContent = userTitle || "—";
   userVerseBox.innerHTML = highlightComparison(v.verse, userVerse);
 }
+// ----- REVIEW QUIZ BUTTON (original mode) -----
+goToPackSelectBtn.onclick = () => {
+  packSelect.multiple = false;        // single select
+  packSelectCard.style.display = "block";
+  mainMenu.style.display = "none";
+  startQuizBtn.textContent = "Start"; // ensures correct button label
+  startQuizBtn.onclick = startQuiz;   // original quiz
+};
+
+// ----- SMC BUTTON (advanced mode) -----
+startAdvancedQuizBtn.onclick = () => {
+  packSelect.multiple = true;         // multi-select enabled
+  packSelectCard.style.display = "block";
+  mainMenu.style.display = "none";
+  startQuizBtn.textContent = "Start SMC";
+  startQuizBtn.onclick = startAdvancedQuiz; // advanced mode
+};
 
 /* ============================
    ADVANCED SMC QUIZ MODE
