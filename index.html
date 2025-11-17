@@ -9,70 +9,63 @@
 <body>
   <div class="container">
 
-    <h1>LHGWIOH Quiz</h1>
+    <h1>LHGWIOH</h1>
 
     <!-- MAIN MENU -->
-    <div id="mainMenu" class="card">
+    <div id="mainMenu" class="card active">
       <h2>Main Menu</h2>
-      <button id="goToPackSelectBtn" class="primary-btn">Review Quiz</button>
-      <button id="startAdvancedQuizBtn" class="primary-btn">SMC (Advanced)</button>
-      <button id="viewPacksBtn" class="primary-btn">View All Packs</button>
+      <button id="goToPackSelectBtn">Review Quiz</button>
+      <button id="startAdvancedQuizBtn">SMC</button>
+      <button id="viewPacksBtn">View All Packs</button>
     </div>
 
-    <!-- PACK SELECT PAGE
+    <!-- PACK SELECT PAGE -->
     <div id="packSelectCard" class="card">
       <h2>Select Pack(s)</h2>
       <select id="packSelect" multiple></select>
-      <div class="button-row">
-        <button id="startQuizBtn" class="primary-btn">Start Quiz</button>
-        <button id="backToMainBtn" class="ghost-btn">Back</button>
+      <div class="buttons">
+        <button id="startQuizBtn">Start Quiz</button>
+        <button id="backToMainBtn" class="ghost">Back to Main Menu</button>
       </div>
     </div>
 
     <!-- QUIZ PAGE -->
     <div id="quizCard" class="card">
       <h2 id="quizRef"></h2>
-      <label for="inputTitle">Title</label>
-      <input id="inputTitle" placeholder="Enter the title here">
-
-      <label for="inputVerse">Verse</label>
-      <textarea id="inputVerse" placeholder="Enter the verse here"></textarea>
-
-      <div class="button-row">
-        <button id="submitAnswerBtn" class="primary-btn">Submit</button>
-        <button id="skipBtn" class="ghost-btn">Show Answer</button>
+      <label>Title</label>
+      <input id="inputTitle">
+      <label>Verse</label>
+      <textarea id="inputVerse"></textarea>
+      <div class="buttons">
+        <button id="submitAnswerBtn">Submit</button>
+        <button id="skipBtn" class="ghost">Show Answer</button>
       </div>
     </div>
 
     <!-- REVIEW PAGE -->
     <div id="reviewCard" class="card">
       <h2 id="reviewHeading">Review</h2>
-
       <div><strong>Correct Title:</strong> <span id="correctTitle"></span></div>
-      <div id="correctVerse"></div>
-
+      <div id="correctVerse" class="muted"></div>
       <div><strong>Your Title:</strong> <span id="userTitleEl"></span></div>
-      <div id="userVerseBox"></div>
-
-      <div class="button-row">
-        <button id="nextBtn" class="primary-btn">Next</button>
-        <button id="retryBtn" class="ghost-btn">Try Again</button>
-        <button id="backBtn" class="ghost-btn">Back</button>
+      <div id="userVerseBox" class="user-verse"></div>
+      <div class="buttons">
+        <button id="nextBtn">Next</button>
+        <button id="retryBtn" class="ghost">Try Again</button>
+        <button id="backBtn" class="ghost">Back to Main Menu</button>
       </div>
-
-      <p class="legend">
-        <strong>Legend:</strong> Black = correct, Blue = wrong/extra, Red = missing
-      </p>
+      <div class="muted legend">
+        <strong>Legend:</strong><br>
+        Black = correct, Blue = wrong/extra, Red = missing
+      </div>
     </div>
 
     <!-- VIEW PACKS PAGE -->
     <div id="viewPacksCard" class="card">
       <h2>Verse Packs</h2>
+      <button id="backToMenuBtn">Back to Main Menu</button>
       <div id="packsContainer"></div>
-      <div class="button-row">
-        <button id="backToMenuBtn" class="ghost-btn">Back</button>
-        <button id="backToMenuBtn2" class="ghost-btn">Back</button>
-      </div>
+      <button id="backToMenuBtn2">Back to Main Menu</button>
     </div>
 
   </div>
