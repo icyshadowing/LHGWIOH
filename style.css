@@ -1,132 +1,93 @@
-/* -------------------------
-   General Reset & Fonts
-------------------------- */
+/* General container */
 body {
   font-family: Arial, sans-serif;
-  background: #f0f4f8;
+  background-color: #f7f7f7;
   margin: 0;
   padding: 0;
-  color: #333;
-}
-
-h1, h2 {
-  text-align: center;
 }
 
 .container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 10px;
-}
-
-/* -------------------------
-   Cards (Sections)
-------------------------- */
-.card {
-  background: #fff;
+  max-width: 700px;
+  margin: 40px auto;
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Card styling */
+.card {
+  display: none; /* hide all cards by default */
+  background-color: #fff;
+  padding: 20px;
   margin-bottom: 20px;
-  display: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: left;
 }
 
-.card label {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
+.card.active {
+  display: block; /* show only active card */
 }
 
-.card input, .card textarea, .card select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.card select[multiple] {
-  height: 150px;
-}
-
-/* -------------------------
-   Buttons
-------------------------- */
+/* Buttons */
 button {
-  cursor: pointer;
-  padding: 10px 16px;
-  font-size: 16px;
+  padding: 10px 20px;
+  margin: 5px;
   border: none;
   border-radius: 8px;
-  transition: all 0.2s;
-}
-
-.primary-btn {
-  background: #007BFF;
-  color: #fff;
-}
-
-.primary-btn:hover {
-  background: #0056b3;
-}
-
-.ghost-btn {
-  background: #f0f0f0;
-  color: #333;
-}
-
-.ghost-btn:hover {
-  background: #e0e0e0;
-}
-
-.button-row {
-  margin-top: 15px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-/* -------------------------
-   Packs & Verses
-------------------------- */
-.pack-card, .verse-card {
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-}
-
-.pack-card:hover {
-  background: #e6f0ff;
-}
-
-/* -------------------------
-   Word Highlighting
-------------------------- */
-.word.ok { color: black; }
-.word.extra { color: blue; text-decoration: line-through; }
-.word.missing { color: red; }
-
-/* -------------------------
-   Legend
-------------------------- */
-.legend {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button.ghost {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+button.ghost:hover {
+  background-color: #e0e0e0;
+}
+
+/* Inputs */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 16px 0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Legend text */
+.legend {
+  font-size: 12px;
   color: #555;
   margin-top: 12px;
 }
 
-/* -------------------------
-   Responsive
-------------------------- */
-@media(max-width:600px){
-  .button-row{
-    flex-direction: column;
-  }
-  .card input, .card textarea, .card select {
-    font-size: 14px;
-  }
+/* Colored words for review */
+.word.ok { color: black; }
+.word.extra { color: blue; text-decoration: line-through; }
+.word.missing { color: red; }
+
+/* Verse card inside view packs */
+.verse-card, .pack-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.verse-card:hover, .pack-card:hover {
+  background-color: #f0f8ff;
 }
