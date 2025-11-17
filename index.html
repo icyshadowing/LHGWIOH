@@ -22,7 +22,10 @@
     <!-- PACK SELECT PAGE -->
     <div id="packSelectCard" class="card" style="display:none;">
       <h2>Select a Pack</h2>
-      <select id="packSelect"></select>
+
+      <!-- MULTIPLE SELECTION ENABLED -->
+      <select id="packSelect" multiple></select>
+
       <button id="startQuizBtn">Start</button>
       <button id="backToMainBtn" class="ghost">Back to Main Page</button>
     </div>
@@ -30,10 +33,13 @@
     <!-- QUIZ PAGE -->
     <div id="quizCard" class="card" style="display:none;">
       <h2 id="quizRef"></h2>
+
       <label>Title</label>
       <input id="inputTitle">
+
       <label>Verse</label>
       <textarea id="inputVerse"></textarea>
+
       <button id="submitAnswerBtn">Submit</button>
       <button id="skipBtn" class="ghost">Show Answer</button>
     </div>
@@ -41,19 +47,25 @@
     <!-- REVIEW PAGE -->
     <div id="reviewCard" class="card" style="display:none;">
       <h2 id="reviewHeading">Review</h2>
+
+      <!-- FIXED: userTitleEl added -->
       <div><strong>Correct Title:</strong> <span id="correctTitle"></span></div>
       <div id="correctVerse" class="muted"></div>
-      <div><strong>Your Title:</strong> <span id="userTitle"></span></div>
+
+      <div><strong>Your Title:</strong> <span id="userTitleEl"></span></div>
       <div id="userVerseBox" class="user-verse"></div>
+
       <button id="nextBtn">Next</button>
       <button id="retryBtn" class="ghost">Try Again</button>
       <button id="backBtn" class="ghost">Back to Main Page</button>
+
       <div class="muted" style="margin-top:8px;">
-        <strong>Legend:</strong><br>Black = correct, Blue = wrong/extra, Red = missing
+        <strong>Legend:</strong><br>
+        Black = correct, Blue = wrong/extra, Red = missing
       </div>
     </div>
 
-    <!-- VIEW PACKS PAGE1 -->
+    <!-- VIEW PACKS PAGE -->
     <div id="viewPacksCard" class="card" style="display:none;">
       <h2>Verse Packs</h2>
       <button id="backToMenuBtn">Back to Main Menu</button>
