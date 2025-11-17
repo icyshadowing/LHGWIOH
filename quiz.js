@@ -234,3 +234,148 @@ function showReview(uTitle, uVerse) {
     userTitleEl.style.color = "blue";
   }
 }
+
+
+// ADVANCED QUIZ MODE (NEW)
+// -----------------------------
+// Store advanced quiz session
+let advSession = null;
+
+// When user chooses packs and starts advanced quiz
+function startAdvancedQuiz() {
+  // Allow multi-select: collect all selected packs
+  const selectedOptions = [...packSelect.selectedOptions].map(o => o.value);
+  if (selectedOptions.length === 0) {
+    alert("Please select at least one pack.");
+    return;
+  }
+
+  // Gather verses from selected packs
+  let pool = [];
+  selectedOptions.forEach(packName => {
+    pool = pool.concat(VERSE_PACKS[packName]);
+  });
+
+  // Shuffle + pick 12
+  pool = shuffle(pool).slice(0, 12);
+
+  advSession = {
+    verses: pool,
+    index: 0,
+    results: [],
+    finished: false
+  };
+
+  // Hide menus
+  mainMenu.style.display = 'none';
+  reviewCard.style.display = 'none';
+  packSelectCard.style.display = 'none';
+
+  // Show quiz card
+  quizCard.style.display = 'block';
+
+  loadAdvancedQuestion();
+}
+
+function loadAdvancedQuestion() {
+  const v = advSession.verses[advSession.index];
+  quizRef.textContent = v.ref;
+  inputTitle.value = "";
+  inputVerse.value = "";
+}
+
+// Replaces normal showReview for advanced quiz only
+function submitAdvancedAnswer() {
+  const v = advSession.verses[advSession.index];
+  const userTitle = inputTitle.value.trim();
+  const userVerse = inputVerse.value.trim();
+
+  // SCORING
+  let score = 0;
+
+  // Title score
+  if (normalize(userTitle) !== normalize(v.title)) {
+    score -= 1;
+  }
+
+  // Verse body scoring
+  const cw = tokenize(v.verse);
+  const uw = tokenize(userVerse);
+
+  let mistakes = 0;
+  const maxMistakes = 4; // verse-body-only max
+
+  // Count mistakes using normalized compare
+  const len = Math.max(cw.length, uw.length);
+  for (let i = 0; i < len; i++) {
+    const cword = normalize(cw[i] || "");
+    const uword = normalize(uw[i] || "");
+    if (cword !== uword) mistakes++;
+  }
+
+  score -= Math.min(mistakes, maxMistakes);
+
+  // Total max penalty = –5
+  if (score < -5) score = -5;
+
+  // Save result
+  advSession.results.push({
+    ref: v.ref,
+    title: v.title,
+    verse: v.verse,
+    userTitle,
+    userVerse,
+    score,
+    highlighted: highlightComparison(v.verse, userVerse)
+  });
+
+  advSession.index++;
+
+  // Finished?
+  if (advSession.index >= advSession.verses.length) {
+    advSession.finished = true;
+    showAdvancedReviewPage();
+  } else {
+    loadAdvancedQuestion();
+  }
+}
+
+// Review page showing ALL verses
+function showAdvancedReviewPage() {
+  quizCard.style.display = 'none';
+  reviewCard.style.display = 'block';
+
+  // Replace reviewCard contents with multi-verse layout
+  reviewHeading.textContent = "Advanced Quiz Review (12 Verses)";
+
+  let totalScore = 0;
+  let html = "";
+
+  advSession.results.forEach(r => {
+    totalScore += r.score;
+    html += `
+      <div class="adv-result-block">
+        <h3>${r.ref} (Score: ${r.score})</h3>
+        <p><strong>Correct Title:</strong> ${r.title}</p>
+        <p><strong>Your Title:</strong> ${r.userTitle || '—'}</p>
+        <p><strong>Correct Verse:</strong> ${r.verse}</p>
+        <p><strong>Your Verse:</strong></p>
+        <p>${r.highlighted}</p>
+        <hr>
+      </div>
+    `;
+  });
+
+  correctTitle.textContent = "Total Score: " + totalScore;
+  correctVerse.innerHTML = html;
+
+  userTitleEl.textContent = "";
+  userVerseBox.innerHTML = "";
+
+  // A single NEXT button becomes "Back to Main"
+  nextBtn.style.display = 'none';
+  retryBtn.style.display = 'none';
+  skipBtn.style.display = 'none';
+
+  backBtn.style.display = 'block';
+}
